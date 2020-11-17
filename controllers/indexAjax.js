@@ -1,4 +1,5 @@
 console.log(axios);
+var validate = new Validation();
 
 //Kết nối dữ liệu backend dựa vào thư viện axios
 var nvService = new NhanVienService();
@@ -17,10 +18,7 @@ var layDanhSachNhanVienApi = function () {
     promise.catch(function (error) {
         console.log(error);
     })
-
-
 }
-
 
 var renderTable = function (mangNhanVien) {
     var noiDungTable = '';
@@ -62,7 +60,7 @@ document.querySelector('#btnXacNhan').onclick = function () {
     nv.tenNhanVien = document.querySelector('#tenNhanVien').value;
     nv.heSoChucVu = document.querySelector('#chucVu').value;
     nv.luongCoBan = document.querySelector('#luongCoBan').value;
-    nv.soGioLamTrongThang = document.querySelector('#gioLamTrongThang').value;
+    nv.soGioLamTrongThang = document.querySelector('#soGioLamTrongThang').value;
 
     var tagChucVu = document.querySelector('#chucVu');
     var arrOption = tagChucVu.options;
@@ -83,8 +81,18 @@ document.querySelector('#btnXacNhan').onclick = function () {
     promise.catch(function (error) {
         console.log(error.response.data);
     })
-}
 
+    var valid = true;
+    valid &= validate.kiemTraTatCaKyTu(nv.tenNhanVien, 'Tên nhân viên', '.kiemTraDinhDang-tenNhanVien')
+
+   valid &= validate.kiemTraGiaTri(nv.luongCoBan, 'Lương cơ bản', '.kiemTraGiaTri-luongCoBan', 1000000, 20000000) & validate.kiemTraGiaTri(nv.gioLamTrongThang, 'Số giờ làm', '.kiemTraGiaTri-gioLamTrongThang', 50, 150);
+
+   valid &= validate.kiemTraDoDaiChuoi(nv.maNhanVien, 'Mã nhân viên', '.kiemTraDoDaiChuoi-maNhanVien', 4, 6);
+
+   if (!valid) {
+    return;
+}
+}
 
 //---------Chức năng xóa sinh viên server dựa vào api backend------------
 
@@ -149,4 +157,18 @@ document.querySelector('#btnLuuThongTin').onclick = function () {
     promise.catch(function (error) {
         console.log(error.response.data);
     })
+
+    var valid = true;
+    valid &= validate.kiemTraTatCaKyTu(nv.tenNhanVien, 'Tên nhân viên', '.kiemTraDinhDang-tenNhanVien')
+
+   valid &= validate.kiemTraGiaTri(nv.luongCoBan, 'Lương cơ bản', '.kiemTraGiaTri-luongCoBan', 1000000, 20000000) & validate.kiemTraGiaTri(nv.gioLamTrongThang, 'Số giờ làm', '.kiemTraGiaTri-gioLamTrongThang', 50, 150);
+
+   valid &= validate.kiemTraDoDaiChuoi(nv.maNhanVien, 'Mã nhân viên', '.kiemTraDoDaiChuoi-maNhanVien', 4, 6);
+
+   if (!valid) {
+    return;
 }
+
+}
+
+
