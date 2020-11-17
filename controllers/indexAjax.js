@@ -32,7 +32,7 @@ var renderTable = function (mangNhanVien) {
         nv.chucVu = mangNhanVien[i].chucVu;
         nv.heSoChucVu = mangNhanVien[i].heSoChucVu;
         nv.luongCoBan = mangNhanVien[i].luongCoBan;
-        nv.gioLamTrongThang = mangNhanVien[i].gioLamTrongThang;
+        nv.soGioLamTrongThang = mangNhanVien[i].soGioLamTrongThang;
         //Tạo các tr chứa thông tin sinh viên tương ứng
         noiDungTable += `
             <tr>
@@ -41,7 +41,7 @@ var renderTable = function (mangNhanVien) {
             <td>${nv.chucVu}</td>
             <td>${nv.luongCoBan}</td>
             <td>${nv.tinhTongLuong()}</td>
-            <td>${nv.gioLamTrongThang}</td>
+            <td>${nv.soGioLamTrongThang}</td>
             <td>${nv.xepLoai()}</td>
             <td><button class="btn btn-primary" onclick="suaNhanVien('${nv.maNhanVien}')">Sửa</button></td>
             <td><button class="btn btn-danger" onclick="xoaNhanVien('${nv.maNhanVien}')">Xóa</button></td>
@@ -62,7 +62,7 @@ document.querySelector('#btnXacNhan').onclick = function () {
     nv.tenNhanVien = document.querySelector('#tenNhanVien').value;
     nv.heSoChucVu = document.querySelector('#chucVu').value;
     nv.luongCoBan = document.querySelector('#luongCoBan').value;
-    nv.gioLamTrongThang = document.querySelector('#gioLamTrongThang').value;
+    nv.soGioLamTrongThang = document.querySelector('#gioLamTrongThang').value;
 
     var tagChucVu = document.querySelector('#chucVu');
     var arrOption = tagChucVu.options;
@@ -113,7 +113,7 @@ var suaNhanVien = function (maNhanVien) {
         document.querySelector('#tenNhanVien').value = nv.tenNhanVien;
         document.querySelector('#chucVu').value = nv.chucVu;
         document.querySelector('#luongCoBan').value = nv.luongCoBan;
-        document.querySelector('#gioLamTrongThang').value = nv.gioLamTrongThang;
+        document.querySelector('#soGioLamTrongThang').value = nv.soGioLamTrongThang;
     });
     promise.catch(function (error) {
         console.log(error.response.data);
@@ -130,7 +130,7 @@ document.querySelector('#btnLuuThongTin').onclick = function () {
     nv.tenNhanVien = document.querySelector('#tenNhanVien').value;
     nv.heSochucVu= document.querySelector('#chucVu').value;
     nv.luongCoBan = document.querySelector('#luongCoBan').value;
-    nv.gioLamTrongThang = document.querySelector('#gioLamTrongThang').value;
+    nv.soGioLamTrongThang = document.querySelector('#soGioLamTrongThang').value;
 
     var tagChucVu = document.querySelector('#chucVu');
     var arrOption = tagChucVu.options;
